@@ -1,9 +1,134 @@
 #estrutura minima 
 
+# openapi: 3.0.0
+# info: 
+#   title: Calculo do BioDigestor
+#   version: 0.0.1
+# tags: 
+# paths:
+# components:
+
+
 openapi: 3.0.0
-info: 
-  title: API Loja Virtual
+info:
+  title: Calculo do BioDigestor
   version: 0.0.1
-tags: 
+tags:
+  - Calculos
 paths:
+  /Calculos:
+    get:
+      tags:
+        - Calculos
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayOfCalculos'
+      security:
+        - JWTAuth: []
+    post:
+      tags:
+        - Calculos
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Calculo'
+      responses:
+        201:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Calculo'
+        422:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+  /Calculos/{id}:
+    get:
+      tags:
+        - Calculos
+      parameters:
+        - in: path
+          type: string
+          name: id
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Calculo'
+        404:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+        422:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+    put:
+      tags:
+        - Calculos
+      parameters:
+        - in: path
+          type: string
+          name: id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Calculo'
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Calculo'
+        404:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+    delete:
+      tags:
+        - Calculos
+      parameters:
+        - in: path
+          type: string
+          name: id
+      responses:
+        204:
+          content:
+        404:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
 components:
+  schemas:
+    ArrayOfCalculos:
+      type: array
+      items:
+        $ref: '#/components/schemas/Calculo'
+    Calculo:
+      type: object
+      properties:
+        nome:
+          type: string
+        preco:
+          type: number
+    Mensagem:
+      type: object
+      properties:
+        msg:
+          type: string
+  securitySchemes: 
+    JWTAuth:
+      type: apiKey
+      in: header
+      name: Authorization   
