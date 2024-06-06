@@ -1,9 +1,13 @@
-#estrutura minima 
-
 openapi: 3.0.0
-info: 
-  title: API Loja Virtual
-  version: 0.0.1
-tags: 
+info:
+  title: API Usuario
+  version: 0.1
+tags:
+  - name: usuarios
 paths:
+  /usuarios:
+  /usuarios/login:
+  /usuarios/renovar:
 components:
+  schemas:
+  securitySchemes:
