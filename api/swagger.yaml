@@ -3,34 +3,34 @@ info:
   title: API Hitorico de Fazendas
   version: 0.1
 tags:
-  - fazendas
+  - historicos
 paths:
-  /fazendas:
+  /historicos:
     get:
       tags:
-        - fazendas
+        - historicos
       responses:
         200:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ArrayOfFazendas'
+                $ref: '#/components/schemas/ArrayOfHistoricos'
       security:
         - JWTAuth: []
     post:
       tags:
-        - fazendas
+        - historicos
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Fazenda'
+              $ref: '#/components/schemas/Historico'
       responses:
         201:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Fazenda'
+                $ref: '#/components/schemas/Historico'
         422:
           content:
             application/json:
@@ -39,7 +39,7 @@ paths:
   /fazendas/{id}:
     get:
       tags:
-        - fazendas
+        - historicos
       parameters:
         - in: path
           type: string
@@ -49,7 +49,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Fazenda'
+                $ref: '#/components/schemas/Historico'
         404:
           content:
             application/json:
@@ -62,7 +62,7 @@ paths:
                 $ref: '#/components/schemas/Mensagem'
     put:
       tags:
-        - fazendas
+        - historicos
       parameters:
         - in: path
           type: string
@@ -71,13 +71,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Fazenda'
+              $ref: '#/components/schemas/Historico'
       responses:
         200:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Fazenda'
+                $ref: '#/components/schemas/Historico'
         404:
           content:
             application/json:
@@ -85,7 +85,7 @@ paths:
                 $ref: '#/components/schemas/Mensagem'
     delete:
       tags:
-        - fazendas
+        - historico
       parameters:
         - in: path
           type: string
@@ -103,7 +103,7 @@ components:
     ArrayOfFazendas:
       type: array
       items:
-        $ref: '#/components/schemas/Fazenda'
+        $ref: '#/components/schemas/Historico'
     Fazenda:
       type: object
       properties:

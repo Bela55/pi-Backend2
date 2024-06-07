@@ -7,26 +7,26 @@ const request = supertest(app);
 let id = null;
 
 describe("API Historico de Fazendas", function () {
-   test("Deve retornar 201 e um JSON para POST /fazendas", async () => {
+   test("Deve retornar 201 e um JSON para POST /historicos", async () => {
      const result = await request
-     .post("/fazendas")
+     .post("/historicos")
      .send({ nome: "Rancho Fundo", calculo: 15.0});
    id = result.body._id.toString();
    expect(result.status).toBe(201);
    expect(result.type).toBe("application/json");
    });
 
-  test("Deve retornar 422 e um JSON da fazenda criada para POST /fazendas", async () => {
+  test("Deve retornar 422 e um JSON do historico criado para POST /historicos", async () => {
     const result = await request
-    .post("/fazendas")
+    .post("/historicos")
     .send({});
   expect(result.status).toBe(422);
   expect(result.type).toBe("application/json");
   });
 
-  test("Deve retornar 200 e um JSON array para GET /fazendas", async () => {
+  test("Deve retornar 200 e um JSON array para GET /historicos", async () => {
     const result = await request
-    .get("/fazendas")
+    .get("/historicos")
   expect(result.status).toBe(200);
   expect(result.type).toBe("application/json");
   if (result.body.length > 0){
@@ -34,52 +34,52 @@ describe("API Historico de Fazendas", function () {
   }
   });
 
-  test("Deve retornar 200 e um JSON para GET /fazendas/id", async () => {
+  test("Deve retornar 200 e um JSON para GET /historicos/id", async () => {
     const result = await request
-    .get(`/fazendas/${id}`)
+    .get(`/historicos/${id}`)
   expect(result.status).toBe(200);
   expect(result.type).toBe("application/json");
   });
 
-  test("Deve retornar 404 e um JSON para GET /fazendas/id", async () => {
+  test("Deve retornar 404 e um JSON para GET /historicos/id", async () => {
     const result = await request
-    .get(`/fazendas/id`)
+    .get(`/historicos/id`)
   expect(result.status).toBe(404);
   expect(result.type).toBe("application/json");
   });
 
-  test("Deve retornar 200 para PUT /fazendas/id", async () => {
+  test("Deve retornar 200 para PUT /historicos/id", async () => {
     const result = await request
-    .put(`/fazendas/${id}`)
+    .put(`/historicos/${id}`)
     .send({nome: "Rancho Fundo", calculo: 22.0});
   expect(result.status).toBe(200);
   expect(result.type).toBe("application/json");
   });
 
-  test("Deve retornar 404 para PUT /fazendas/id", async () => {
+  test("Deve retornar 404 para PUT /historicos/id", async () => {
     const result = await request
-    .put(`/fazendas/id`)
+    .put(`/historicos/id`)
   expect(result.status).toBe(404);
   expect(result.type).toBe("application/json");
   });
 
-  test("Deve retornar 422 e um JSON para PUT /fazendas/id", async () => {
+  test("Deve retornar 422 e um JSON para PUT /historicos/id", async () => {
     const result = await request
-    .put(`/fazendas/${id}`)
+    .put(`/historicos/${id}`)
     .send({});
   expect(result.status).toBe(422);
   expect(result.type).toBe("application/json");
 });
 
-  test("Deve retornar 204 e um JSON para DELETE /fazends/id", async () => {
+  test("Deve retornar 204 e um JSON para DELETE /historicos/id", async () => {
     const result = await request
-    .delete(`/fazendas/${id}`)
+    .delete(`/historicos/${id}`)
   expect(result.status).toBe(204);
   expect(result.type).toBe("");
   });
-  test("Deve retornar 404 e um JSON para DELETE /fazendas/id", async () => {
+  test("Deve retornar 404 e um JSON para DELETE /historicos/id", async () => {
     const result = await request
-    .delete(`/fazendas/id`)
+    .delete(`/historicos/id`)
   expect(result.status).toBe(404);
   expect(result.type).toBe("application/json");
   });
