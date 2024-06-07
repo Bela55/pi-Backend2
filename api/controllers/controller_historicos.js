@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const Produto = require("../models/model_historicos");
+const historico = require("../controllers/users_controllers");
 
 async function validarDados(req, res, next) {
   const historico = new Historico(req.body);

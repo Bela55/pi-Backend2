@@ -64,7 +64,20 @@ describe("API Historico de Fazendas", function () {
   test("Deve retornar 200 para PUT /historicos/id", async () => {
     const result = await request
     .put(`/historicos/${id}`)
-    .send({nome: "Rancho Fundo", calculo: 22.0});
+    .send({nome: "Rancho da Serra", 
+    biodigestorVolume: "000 m²",
+     biodigestorTotalHeight: "000 m",
+     biodigestorChamberDiameter: "00 m",
+     biodigestorChamberHeight: "00 m",
+     biodigestorDiameter: "00 m",
+     gasometerHeight: "00 m",
+     guidePipeLength: "00 m",
+     loadDischargeTankDimensions: "00 m",
+     dischargePipeLength: "00 m",
+     loadPipeLength: "00 m",
+     gasVolumeProducedByBiodigestor: "00 m²",
+     creationDate: "17/09/2023"});
+
   expect(result.status).toBe(200);
   expect(result.type).toBe("application/json");
   });
@@ -90,6 +103,7 @@ describe("API Historico de Fazendas", function () {
   expect(result.status).toBe(204);
   expect(result.type).toBe("");
   });
+  
   test("Deve retornar 404 e um JSON para DELETE /historicos/id", async () => {
     const result = await request
     .delete(`/historicos/id`)

@@ -1,7 +1,7 @@
 const crypto = require("crypto");
 const jwt = require('jsonwebtoken');
 
-const Usuario = require("../models/users");
+const Usuario = require("../models/model_historicos");
 
 function cifrarSenha(senha, salt) {
   const hash = crypto.createHmac("sha256", salt);
