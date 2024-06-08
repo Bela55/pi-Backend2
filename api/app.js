@@ -6,8 +6,9 @@ var logger = require('morgan');
 
 mongoose.connect(process.env.MONGODB_URL);
 
-const routerApidocs = require('./routes/router_apidocs');
-const routerFazendas = require('./routes/router_historicos');
+const routerApidocs_routes = require('./routes/apidocs_routes');
+const routerHistoricos = require('./routes/router_historicos');
+const usersRouter_historicos = require ('./routes/router_historicos')
 
 var app = express();
 
@@ -16,8 +17,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use('/users', usersRouter);
-app.use('/api-docs', routerApidocs);
-app.use('/fazendas', routerHistoricos);
+app.use('/users_routes', usersRouter_historicos);
+app.use('/api-docs_routes', routerApidocs_routes);
+app.use('/historicos', routerHistoricos);
 
 module.exports = app;
