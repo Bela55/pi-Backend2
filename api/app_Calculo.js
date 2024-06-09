@@ -13,7 +13,7 @@ const Calculo = () => {
     const _goBack = () => console.log('Went back');
     const _handleMore = () => console.log('Shown more');
   
-    const data = {
+    const dados = {
       title: "Calculo da Fazenda",
       ranchName: "Rancho da Serra",
       biodigestorVolume: "000 m²",
@@ -27,10 +27,9 @@ const Calculo = () => {
       dischargePipeLength: "00 m",
       loadPipeLength: "00 m",
       gasVolumeProducedByBiodigestor: "00 m²",
-      creationDate: "17/09/2023"
     };
   
-    console.log(data);
+    console.log(dados);
     _goBack();
     _handleMore();
   };

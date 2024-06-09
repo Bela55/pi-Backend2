@@ -17,27 +17,41 @@ const request = supertest(app);
 
 let id = null;
 
-describe("API Loja Virtual", function () {
-   test("Deve retornar 201 e um JSON para POST /produtos", async () => {
+describe("Calculo da Fazenda", function () {
+   test("Deve retornar 201 e um JSON para POST /calculos", async () => {
      const result = await request
-     .post("/produtos")
-     .send({ nome: "banana", preco: 15.0});
+     .post("/calculos")
+     .send({ nome: "Fazenda Jasmim", valor: 
+
+     "Volume do biodigestor: 000 m2",
+     "Altura total do biodigestor: 000 m",
+     "Diametro da câmara do biodigestor: 00 m",
+     "Altura da câmara do biodigetor: 00 m",
+     "Diâmetro do biodigestor: 00 m",
+     "Altura do gasômetro: 00 m",
+     "Comprimento do cano guia: 00 m",
+     "Dimenssões dos tanques de carga e descarga: 00 m",
+     "Comprimento do cano de descarga: 00 m",
+     "Comprimento do cano de carga: 00 m",
+     "Volume de gás produzido pelo biodigestor: 00 m2"
+     
+    });
    id = result.body._id.toString();
    expect(result.status).toBe(201);
    expect(result.type).toBe("application/json");
    });
 
-  test("Deve retornar 422 e um JSON do produto criado para POST /produtos", async () => {
+  test("Deve retornar 422 e um JSON do produto criado para POST /calculos", async () => {
     const result = await request
-    .post("/produtos")
+    .post("/calculos")
     .send({});
   expect(result.status).toBe(422);
   expect(result.type).toBe("application/json");
   });
 
-  test("Deve retornar 200 e um JSON array para GET /produtos", async () => {
+  test("Deve retornar 200 e um JSON array para GET /calculos", async () => {
     const result = await request
-    .get("/produtos")
+    .get("/calculos")
   expect(result.status).toBe(200);
   expect(result.type).toBe("application/json");
   if (result.body.length > 0){
@@ -45,52 +59,52 @@ describe("API Loja Virtual", function () {
   }
   });
 
-  test("Deve retornar 200 e um JSON para GET /produtos/id", async () => {
+  test("Deve retornar 200 e um JSON para GET /calculos/id", async () => {
     const result = await request
-    .get(`/produtos/${id}`)
+    .get(`/calculos/${id}`)
   expect(result.status).toBe(200);
   expect(result.type).toBe("application/json");
   });
 
-  test("Deve retornar 404 e um JSON para GET /produtos/id", async () => {
+  test("Deve retornar 404 e um JSON para GET /calculos/id", async () => {
     const result = await request
-    .get(`/produtos/id`)
+    .get(`/calculos/id`)
   expect(result.status).toBe(404);
   expect(result.type).toBe("application/json");
   });
 
-  test("Deve retornar 200 para PUT /produtos/id", async () => {
+  test("Deve retornar 200 para PUT /calculos/id", async () => {
     const result = await request
-    .put(`/produtos/${id}`)
+    .put(`/calculos/${id}`)
     .send({nome: "banana nanica", preco: 22.0});
   expect(result.status).toBe(200);
   expect(result.type).toBe("application/json");
   });
 
-  test("Deve retornar 404 para PUT /produtos/id", async () => {
+  test("Deve retornar 404 para PUT /calculos/id", async () => {
     const result = await request
-    .put(`/produtos/id`)
+    .put(`/calculos/id`)
   expect(result.status).toBe(404);
   expect(result.type).toBe("application/json");
   });
 
-  test("Deve retornar 422 e um JSON para PUT /produtos/id", async () => {
+  test("Deve retornar 422 e um JSON para PUT /calculos/id", async () => {
     const result = await request
-    .put(`/produtos/${id}`)
+    .put(`/calculos/${id}`)
     .send({});
   expect(result.status).toBe(422);
   expect(result.type).toBe("application/json");
 });
 
-  test("Deve retornar 204 e um JSON para DELETE /produtos/id", async () => {
+  test("Deve retornar 204 e um JSON para DELETE /calculos/id", async () => {
     const result = await request
-    .delete(`/produtos/${id}`)
+    .delete(`/calculos/${id}`)
   expect(result.status).toBe(204);
   expect(result.type).toBe("");
   });
-  test("Deve retornar 404 e um JSON para DELETE /produtos/id", async () => {
+  test("Deve retornar 404 e um JSON para DELETE /calculos/id", async () => {
     const result = await request
-    .delete(`/produtos/id`)
+    .delete(`/calculos/id`)
   expect(result.status).toBe(404);
   expect(result.type).toBe("application/json");
   });

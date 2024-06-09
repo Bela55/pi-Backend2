@@ -6,19 +6,19 @@
 
 const express = require("express");
 
-const controllerProdutos = require("../controllers/controller_produtos");
+const controllerCalculo = require("../controllers/controller_Calculo");
 const validarToken = require('../middlewares/auth');
 const router = express.Router();
 
-router.post("/", controllerProdutos.validarDados,
- controllerProdutos.criar);
+router.post("/", controllerCalculo.validarDados,
+ controllerCalculo.criar);
 
-router.get("/", validarToken, controllerProdutos.listarTodos);
+router.get("/", validarToken, controllerCalculo.listarTodos);
 
-router.get("/:id", controllerProdutos.buscarPeloId, controllerProdutos.obter);
+router.get("/:id", controllerCalculo.buscarPeloId, controllerCalculo.obter);
 
-router.put("/:id", controllerProdutos.buscarPeloId, controllerProdutos.validarDados, controllerProdutos.atualizar);
+router.put("/:id", controllerCalculo.buscarPeloId, controllerCalculo.validarDados, controllerCalculo.atualizar);
 
-router.delete("/:id", controllerProdutos.buscarPeloId, controllerProdutos.remover);
+router.delete("/:id", controllerCalculo.buscarPeloId, controllerCalculo.remover);
 
 module.exports = router;

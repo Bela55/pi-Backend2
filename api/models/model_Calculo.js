@@ -16,7 +16,7 @@ const Calculo = new mongoose.Schema({
     trim: true,
     uppercase: true,
   },
-  preco: { type: Number, required: true },
+  valor: { type: Number, required: true },
 });
 
-module.exports = mongoose.model("Produtos", Calculo);
+module.exports = mongoose.model("Calculo", Calculo);
