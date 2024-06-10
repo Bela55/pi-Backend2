@@ -4,7 +4,7 @@ function validarToken(req, res, next){
     if(jwt.verify(token, '12345678')){
         next();
     } else {
-     res.status(401).json({msg: 'Token invalido'});
+     res.status(401).json({msg: 'Token inválido'});
     }
 }
 

@@ -1,7 +1,7 @@
 const express = require("express");
 
 const controllerHistoricos = require("../controllers/controller_historicos");
-const validarToken = require('../middlewares/auth_middlewares');
+const validarToken = require('../middlewares/auth_historicos');
 const router = express.Router();
 
 router.post("/", controllerHistoricos.validarDados,

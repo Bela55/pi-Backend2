@@ -17,6 +17,7 @@ async function criar(req, res) {
     senha: cifrarSenha(senha, salt),
     salt,
   });
+
   res.status(201).json({
     id: novoUsuario._id.toString(),
     email: novoUsuario.email,
@@ -31,12 +32,13 @@ async function entrar(req, res) {
     if (usuario.senha === cifrarSenha(req.body.senha, usuario.salt)) {    
       res.json({ token: jwt.sign({email: usuario.email}, '12345678', {expiresIn: '1h'}) });
     } else {
-      res.status(401).status({ msg: "acesso negado" });
+      res.status(401).status({ msg: "Acesso negado" });
     }
   }else{
-    res.status(401).status({ msg: "credenciais invalidas" });
+    res.status(401).status({ msg: "Credenciais inválidas" });
   }
 }
+
 function renovar(req, res){
     const token = req.headers['authorization'];
   
@@ -45,11 +47,11 @@ function renovar(req, res){
         const payload = jwt.verify(token, '12345678');
         res.json({ token: jwt.sign({ email: payload.email }, '12345678')});
       } catch(error){
-        res.status(401).json({msg: 'token invalido'});
+        res.status(401).json({msg: 'Token inválido'});
       }
     } else {
-      res.status(400).json({msg: 'token não fornecido'});
+      res.status(400).json({msg: 'Token não fornecido'});
     }
   }
   
-  module.exports = { criar, entrar, renovar};  
+  module.exports = { criar, entrar, renovar};

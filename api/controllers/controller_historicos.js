@@ -7,7 +7,7 @@ async function validarDados(req, res, next) {
     await historico.validate();
     next();
   } catch (err) {
-    res.status(422).json({ msg: "Dados invalidos" });
+    res.status(422).json({ msg: "Dados inválidos" });
   }
 }
 
@@ -17,7 +17,7 @@ async function criar(req, res) {
 }
 
 async function listarTodos(req, res) {
-  const historicos = await Historico.find({});
+  const historico = await Historico.find({});
   res.json(historico);
 }
 
@@ -27,7 +27,7 @@ async function buscarPeloId(req, res, next){
       const historico = await Historico.findOne({ _id: id });
       next();
     } catch(err) {
-      res.status(404).json({msg: "Não encontrado"});
+      res.status(404).json({msg: "Histórico não encontrado"});
     }
 }
 
@@ -39,7 +39,7 @@ async function obter(req, res) {
 
 async function atualizar(req, res) {
   const id = new mongoose.Types.ObjectId(req.params.id);
-  const historico = await Fazenda.findOneAndUpdate({ _id: id }, req.body);
+  const historico = await Historico.findOneAndUpdate({ _id: id }, req.body);
   res.json(historico);
 }
 
