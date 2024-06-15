@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.post("/", controllerHistorico.validarDados, controllerHistorico.criar);
 
-router.get("/", validarToken, controllerHistorico.listarTodos);
+router.get("/", controllerHistorico.listarTodos);
 
 router.get("/:id", controllerHistorico.buscarPeloId, controllerHistorico.obter);
 

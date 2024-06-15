@@ -6,8 +6,8 @@ var logger = require('morgan');
 
 mongoose.connect(process.env.MONGODB_URL);
 
-const routerApidocs_routes = require('./routes/apidocs_routes');
 const routerHistorico = require('./routes/router_historico');
+const routerApidocs_routes = require('./routes/apidocs_routes');
 
 var app = express();
 

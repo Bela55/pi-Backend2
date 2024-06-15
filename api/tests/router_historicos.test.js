@@ -6,7 +6,7 @@ const request = supertest(app);
 
 describe("API Historico de Fazendas", function () {
    test("Deve retornar 201 e um JSON para POST /historico", async () => {
-     const result = await request
+     const result = await request 
      .post("/historico")
      .send({ nome: "Rancho da Serra", 
      biodigestorVolume: "000 m²",

@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const Historico = require("../models/model_historico");
 
 async function validarDados(req, res, next) {
@@ -7,7 +7,7 @@ async function validarDados(req, res, next) {
     await historico.validate();
     next();
   } catch (err) {
-    res.status(422).json({ msg: "Dados inválidos" });
+    res.status(422).json({ msg: "Dados da fazenda inválidos" });
   }
 }
 
@@ -25,13 +25,12 @@ async function buscarPeloId(req, res, next){
     try {
       const id = new mongoose.Types.ObjectId(req.params.id);
       const historico = await Historico.findOne({ _id: id });
-      next();
       if (historico) {
         next();
     } else {
         res.status(404).json({msg: "Histórico não encontrado"})
     }
-    } catch(err) {
+   } catch(err) {
       res.status(400).json({msg: "Id inválido"});
     }
 }
@@ -45,13 +44,13 @@ async function obter(req, res) {
 async function atualizar(req, res) {
   const id = new mongoose.Types.ObjectId(req.params.id);
   const historico = await Historico.findOneAndUpdate({ _id: id }, req.body);
-  res.json(historico);
+  res.json({});
 }
-
 
 async function remover(req,res){
     const id = new mongoose.Types.ObjectId(req.params.id);
   const historico = await Historico.findOneAndDelete({ _id: id }, req.body);
     res.status(204).end();
 }
+
 module.exports = { validarDados, criar, listarTodos, buscarPeloId, obter, atualizar, remover };
