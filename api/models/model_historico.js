@@ -7,7 +7,11 @@ const historicoSchema = new mongoose.Schema({
     trim: true,
     uppercase: true,
   },
-  Nome: { type: Number, String, required: true },
+  calculos: { 
+    type: Number, String,
+    trim: true, 
+    required: true 
+  },
 });
 
-module.exports = mongoose.model("Historicos", historicoSchema);
+module.exports = mongoose.model("historico", historicoSchema);

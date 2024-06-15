@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const historico = require("../controllers/users_controllers");
+const Historico = require("../models/model_historico");
 
 async function validarDados(req, res, next) {
   const historico = new Historico(req.body);
@@ -26,8 +26,13 @@ async function buscarPeloId(req, res, next){
       const id = new mongoose.Types.ObjectId(req.params.id);
       const historico = await Historico.findOne({ _id: id });
       next();
+      if (historico) {
+        next();
+    } else {
+        res.status(404).json({msg: "Histórico não encontrado"})
+    }
     } catch(err) {
-      res.status(404).json({msg: "Histórico não encontrado"});
+      res.status(400).json({msg: "Id inválido"});
     }
 }
 
