@@ -1,7 +1,7 @@
 const express = require("express");
 
-const controllerHistoricos = require("../controllers/controller_historico");
-const validarToken = require('../middlewares/auth_historico');
+const controllerHistorico = require("../controllers/controller_historico");
+
 const router = express.Router();
 
 router.post("/", controllerHistorico.validarDados, controllerHistorico.criar);

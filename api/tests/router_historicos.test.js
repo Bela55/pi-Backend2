@@ -5,9 +5,9 @@ const app = require("../app");
 const request = supertest(app);
 
 describe("API Historico de Fazendas", function () {
-   test("Deve retornar 201 e um JSON para POST /historicos", async () => {
+   test("Deve retornar 201 e um JSON para POST /historico", async () => {
      const result = await request
-     .post("/historicos")
+     .post("/historico")
      .send({ nome: "Rancho da Serra", 
      biodigestorVolume: "000 m²",
      biodigestorTotalHeight: "000 m",
@@ -27,17 +27,17 @@ describe("API Historico de Fazendas", function () {
    expect(result.type).toBe("application/json");
    });
 
-  test("Deve retornar 422 e um JSON do historico criado para POST /historicos", async () => {
+  test("Deve retornar 422 e um JSON do historico criado para POST /historico", async () => {
     const result = await request
-    .post("/historicos")
+    .post("/historico")
     .send({});
   expect(result.status).toBe(422);
   expect(result.type).toBe("application/json");
   });
 
-  test("Deve retornar 200 e um JSON array para GET /historicos", async () => {
+  test("Deve retornar 200 e um JSON array para GET /historico", async () => {
     const result = await request
-    .get("/historicos")
+    .get("/historico")
   expect(result.status).toBe(200);
   expect(result.type).toBe("application/json");
   if (result.body.length > 0){
@@ -45,66 +45,54 @@ describe("API Historico de Fazendas", function () {
   }
   });
 
-  test("Deve retornar 200 e um JSON para GET /historicos/id", async () => {
+  test("Deve retornar 200 e um JSON para GET /historico/id", async () => {
     const result = await request
-    .get(`/historicos/${id}`)
+    .get(`/historico/${id}`)
   expect(result.status).toBe(200);
   expect(result.type).toBe("application/json");
   });
 
-  test("Deve retornar 404 e um JSON para GET /historicos/id", async () => {
+  test("Deve retornar 404 e um JSON para GET /historico/id", async () => {
     const result = await request
-    .get(`/historicos/id`)
+    .get(`/historico/id`)
   expect(result.status).toBe(404);
   expect(result.type).toBe("application/json");
   });
 
-  test("Deve retornar 200 para PUT /historicos/id", async () => {
+  test("Deve retornar 200 para PUT /historico/id", async () => {
     const result = await request
-    .put(`/historicos/${id}`)
-    .send({nome: "Rancho da Serra", 
-    biodigestorVolume: "000 m²",
-     biodigestorTotalHeight: "000 m",
-     biodigestorChamberDiameter: "00 m",
-     biodigestorChamberHeight: "00 m",
-     biodigestorDiameter: "00 m",
-     gasometerHeight: "00 m",
-     guidePipeLength: "00 m",
-     loadDischargeTankDimensions: "00 m",
-     dischargePipeLength: "00 m",
-     loadPipeLength: "00 m",
-     gasVolumeProducedByBiodigestor: "00 m²",
-     creationDate: "17/09/2023"});
+    .put(`/historico/${id}`)
+    .send({});
 
   expect(result.status).toBe(200);
   expect(result.type).toBe("application/json");
   });
 
-  test("Deve retornar 404 para PUT /historicos/id", async () => {
+  test("Deve retornar 404 para PUT /historico/id", async () => {
     const result = await request
-    .put(`/historicos/id`)
+    .put(`/historico/id`)
   expect(result.status).toBe(404);
   expect(result.type).toBe("application/json");
   });
 
-  test("Deve retornar 422 e um JSON para PUT /historicos/id", async () => {
+  test("Deve retornar 422 e um JSON para PUT /historico/id", async () => {
     const result = await request
-    .put(`/historicos/${id}`)
+    .put(`/historico/${id}`)
     .send({});
   expect(result.status).toBe(422);
   expect(result.type).toBe("application/json");
 });
 
-  test("Deve retornar 204 e um JSON para DELETE /historicos/id", async () => {
+  test("Deve retornar 204 e um JSON para DELETE /historico/id", async () => {
     const result = await request
-    .delete(`/historicos/${id}`)
+    .delete(`/historico/${id}`)
   expect(result.status).toBe(204);
   expect(result.type).toBe("");
   });
   
-  test("Deve retornar 404 e um JSON para DELETE /historicos/id", async () => {
+  test("Deve retornar 404 e um JSON para DELETE /historico/id", async () => {
     const result = await request
-    .delete(`/historicos/id`)
+    .delete(`/historico/id`)
   expect(result.status).toBe(404);
   expect(result.type).toBe("application/json");
   });
