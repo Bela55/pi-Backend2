@@ -1,12 +1,11 @@
 const express = require("express");
-
 const controllerHistorico = require("../controllers/controller_historico");
-
+const validarToken = require('../middleware/auth');
 const router = express.Router();
 
 router.post("/", controllerHistorico.validarDados, controllerHistorico.criar);
 
-router.get("/", controllerHistorico.listarTodos);
+router.get("/", validarToken, controllerHistorico.listarTodos);
 
 router.get("/:id", controllerHistorico.buscarPeloId, controllerHistorico.obter);
 

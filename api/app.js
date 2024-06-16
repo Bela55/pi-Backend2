@@ -1,15 +1,16 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
-var express = require('express');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const express = require('express');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const swaggerUI = require('swagger-ui-espress');
+
+var app = express();
 
 mongoose.connect(process.env.MONGODB_URL);
 
 const routerHistorico = require('./routes/router_historico');
 const routerApidocs_routes = require('./routes/apidocs_routes');
-
-var app = express();
 
 app.use(logger('dev'));
 app.use(express.json());
