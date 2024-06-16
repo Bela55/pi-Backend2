@@ -1,13 +1,16 @@
-var express = require('express');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const express = require('express');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const swaggerUi = require('swagger-ui-express');
 
-var app = express();
+const app = express();
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+app.get('/calculo', (req, res) => {
 
 const Calculo = () => {
     const _goBack = () => console.log('Went back');
@@ -36,4 +39,10 @@ const Calculo = () => {
   
   Calculo();
 
+  app.listen(3000, () => {
+    console.log('Servidor rodando na porta 3000');
+  });
+
+  res.json({ message: 'Cálculo realizado com sucesso!' });
+});
 module.exports = app;

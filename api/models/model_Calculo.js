@@ -1,22 +1,28 @@
-// const mongoose = require('mongoose');
-
-// const schema = new mongoose.Schema({
-
-// })
-
-// module.exports = mongoose.model('Recurso', schema);
-
-
 const mongoose = require("mongoose");
 
-const Calculo = new mongoose.Schema({
+const CalculoSchema = new mongoose.Schema({
   nome: {
     type: String,
     required: true,
     trim: true,
     uppercase: true,
+    minlength: 3,
+    maxlength: 50
   },
-  valor: { type: Number, required: true },
+  valor: { 
+    type: Number, 
+    required: true,
+    min: 0,
+    max: 1000000
+  },
+  criadoEm: {
+    type: Date,
+    default: Date.now
+  },
+
 });
 
-module.exports = mongoose.model("Calculo", Calculo);
+// Adicionando um índice ao campo 'nome'
+CalculoSchema.index({ nome: 1 });
+
+module.exports = mongoose.model("Calculo", CalculoSchema);

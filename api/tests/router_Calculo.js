@@ -1,45 +1,35 @@
-// const supertest = require('supertest');
-
-// const app = require('../app');
-
-// const request = supertest(app);
-
-// describe('API Loja Virtual', () => {
-//     test('Deve retornar CODIGO e CORPO no VERBO /ROTA', async () => {});
-// });
-
-
 const supertest = require("supertest");
 
-const app = require("../app");
+const app = require("../app_Calculo");
 
 const request = supertest(app);
 
 let id = null;
 
 describe("Calculo da Fazenda", function () {
-   test("Deve retornar 201 e um JSON para POST /calculos", async () => {
-     const result = await request
-     .post("/calculos")
-     .send({ nome: "Fazenda Jasmim", valor: 
-
-     "Volume do biodigestor: 000 m2",
-     "Altura total do biodigestor: 000 m",
-     "Diametro da câmara do biodigestor: 00 m",
-     "Altura da câmara do biodigetor: 00 m",
-     "Diâmetro do biodigestor: 00 m",
-     "Altura do gasômetro: 00 m",
-     "Comprimento do cano guia: 00 m",
-     "Dimenssões dos tanques de carga e descarga: 00 m",
-     "Comprimento do cano de descarga: 00 m",
-     "Comprimento do cano de carga: 00 m",
-     "Volume de gás produzido pelo biodigestor: 00 m2"
-     
-    });
-   id = result.body._id.toString();
-   expect(result.status).toBe(201);
-   expect(result.type).toBe("application/json");
-   });
+  test("Deve retornar 201 e um JSON para POST /calculos", async () => {
+    const result = await request
+      .post("/calculos")
+      .send({
+        nome: "Fazenda Jasmim",
+        valor: {
+          volumeBiodigestor: "000 m2",
+          alturaTotalBiodigestor: "000 m",
+          diametroCamaraBiodigestor: "00 m",
+          alturaCamaraBiodigestor: "00 m",
+          diametroBiodigestor: "00 m",
+          alturaGasometro: "00 m",
+          comprimentoCanoGuia: "00 m",
+          dimensoesTanquesCargaDescarga: "00 m",
+          comprimentoCanoDescarga: "00 m",
+          comprimentoCanoCarga: "00 m",
+          volumeGasProduzidoBiodigestor: "00 m2"
+        }
+      });
+    id = result.body._id.toString();
+    expect(result.status).toBe(201);
+    expect(result.type).toBe("application/json");
+  }); 
 
   test("Deve retornar 422 e um JSON do produto criado para POST /calculos", async () => {
     const result = await request

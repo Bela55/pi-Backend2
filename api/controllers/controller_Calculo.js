@@ -1,28 +1,35 @@
-// function acao(req, res){}
-
-// module.exports = {acao};
-
 const mongoose = require("mongoose");
 const Calculo = require("../models/model_Calculo");
 
 async function validarDados(req, res, next) {
-  const calculo = new Calculo(req.body);
   try {
-    await calculo.validate();
+    await req.body.validate();
     next();
   } catch (err) {
-    res.status(422).json({ msg: "Dados do protudo invalidos" });
+    res.status(422).json({ msg: "Dados do produto inválidos" });
   }
 }
 
 async function criar(req, res) {
-  const calculo = await Calculo.create(req.body);
-  res.status(201).json(calculo);
+  try {
+    const calculo = await Calculo.create(req.body);
+    if (calculo) {
+      res.status(201).json(calculo);
+    } else {
+      res.status(500).json({ msg: "Erro ao criar cálculo" });
+    }
+  } catch (err) {
+    res.status(500).json({ msg: "Erro no servidor" });
+  }
 }
 
 async function listarTodos(req, res) {
-  const calculos = await Calculo.find({});
-  res.json(calculos);
+  try {
+    const calculos = await Calculo.find({});
+    res.json(calculos);
+  } catch (err) {
+    res.status(500).json({ msg: "Erro ao listar cálculos" });
+  }
 }
 
 module.exports = { validarDados, criar, listarTodos };
