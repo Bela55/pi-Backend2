@@ -1,10 +1,11 @@
 openapi: 3.0.0
 info:
-  title: API FARM
-  description: API para gerenciar fazendas
-  version: 1.0.0
-servers:
-  - url: http://localhost:5000
+  title: Calculo do BioDigestor
+  version: 0.0.2
+host: localhost:3000
+basePath: '/'
+tags:
+  - Calculos
 paths:
   /api/farms:
     post:
@@ -85,8 +86,117 @@ paths:
           description: Fazenda removida com sucesso
         '500':
           description: Erro ao remover a fazenda
+  /Calculos:
+    get:
+      tags:
+        - Calculos
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayOfCalculos'
+      security:
+        - JWTAuth: []
+    post:
+      tags:
+        - Calculos
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Calculo'
+      responses:
+        201:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Calculo'
+        422:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+  /Calculos/{id}:
+    get:
+      tags:
+        - Calculos
+      parameters:
+        - in: path
+          type: string
+          name: id
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Calculo'
+        404:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+        422:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+    put:
+      tags:
+        - Calculos
+      parameters:
+        - in: path
+          type: string
+          name: id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Calculo'
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Calculo'
+        404:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+    delete:
+      tags:
+        - Calculos
+      parameters:
+        - in: path
+          type: string
+          name: id
+      responses:
+        204:
+          content:
+        404:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
 components:
   schemas:
+    ArrayOfCalculos:
+      type: array
+      items:
+        $ref: '#/components/schemas/Calculo'
+    Calculo:
+      type: object
+      properties:
+        nome:
+          type: string
+        preco:
+          type: number
+    Mensagem:
+      type: object
+      properties:
+        msg:
+          type: string
     Farm:
       type: object
       required:
@@ -100,3 +210,10 @@ components:
           type: string
         size:
           type: number
+  securitySchemes: 
+    JWTAuth:
+      type: apiKey
+      in: header
+      name: Authorization   
+      description: Token JWT necessário para autenticação.
+    
