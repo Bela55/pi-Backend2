@@ -1,5 +1,18 @@
 openapi: 3.0.0
 info:
+<<<<<<< HEAD
+  title: API Hitorico de Fazendas
+  version: 0.1
+host: localhost:3000
+basePath:'/api'
+tags:
+  - historico
+paths:
+  /historicos:
+    get:
+      tags:
+        - historico
+=======
   title: Calculo do BioDigestor
   version: 0.0.2
 host: localhost:3000
@@ -90,37 +103,61 @@ paths:
     get:
       tags:
         - Calculos
+>>>>>>> 466a0fa0a3b5f8a283de27dc418fbf6641ec8384
       responses:
         200:
           content:
             application/json:
               schema:
+<<<<<<< HEAD
+                $ref: '#/components/schemas/ArrayOfHistorico'
+=======
                 $ref: '#/components/schemas/ArrayOfCalculos'
+>>>>>>> 466a0fa0a3b5f8a283de27dc418fbf6641ec8384
       security:
         - JWTAuth: []
     post:
       tags:
+<<<<<<< HEAD
+        - historico
+=======
         - Calculos
+>>>>>>> 466a0fa0a3b5f8a283de27dc418fbf6641ec8384
       requestBody:
         content:
           application/json:
             schema:
+<<<<<<< HEAD
+              $ref: '#/components/schemas/Historico'
+=======
               $ref: '#/components/schemas/Calculo'
+>>>>>>> 466a0fa0a3b5f8a283de27dc418fbf6641ec8384
       responses:
         201:
           content:
             application/json:
               schema:
+<<<<<<< HEAD
+                $ref: '#/components/schemas/Historico'
+=======
                 $ref: '#/components/schemas/Calculo'
+>>>>>>> 466a0fa0a3b5f8a283de27dc418fbf6641ec8384
         422:
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Mensagem'
+<<<<<<< HEAD
+  /historico/{id}:
+    get:
+      tags:
+        - historico
+=======
   /Calculos/{id}:
     get:
       tags:
         - Calculos
+>>>>>>> 466a0fa0a3b5f8a283de27dc418fbf6641ec8384
       parameters:
         - in: path
           type: string
@@ -130,7 +167,11 @@ paths:
           content:
             application/json:
               schema:
+<<<<<<< HEAD
+                $ref: '#/components/schemas/Historico'
+=======
                 $ref: '#/components/schemas/Calculo'
+>>>>>>> 466a0fa0a3b5f8a283de27dc418fbf6641ec8384
         404:
           content:
             application/json:
@@ -143,7 +184,11 @@ paths:
                 $ref: '#/components/schemas/Mensagem'
     put:
       tags:
+<<<<<<< HEAD
+        - historico
+=======
         - Calculos
+>>>>>>> 466a0fa0a3b5f8a283de27dc418fbf6641ec8384
       parameters:
         - in: path
           type: string
@@ -152,13 +197,21 @@ paths:
         content:
           application/json:
             schema:
+<<<<<<< HEAD
+              $ref: '#/components/schemas/Historico'
+=======
               $ref: '#/components/schemas/Calculo'
+>>>>>>> 466a0fa0a3b5f8a283de27dc418fbf6641ec8384
       responses:
         200:
           content:
             application/json:
               schema:
+<<<<<<< HEAD
+                $ref: '#/components/schemas/Historico'
+=======
                 $ref: '#/components/schemas/Calculo'
+>>>>>>> 466a0fa0a3b5f8a283de27dc418fbf6641ec8384
         404:
           content:
             application/json:
@@ -166,7 +219,11 @@ paths:
                 $ref: '#/components/schemas/Mensagem'
     delete:
       tags:
+<<<<<<< HEAD
+        - historico
+=======
         - Calculos
+>>>>>>> 466a0fa0a3b5f8a283de27dc418fbf6641ec8384
       parameters:
         - in: path
           type: string
@@ -181,22 +238,37 @@ paths:
                 $ref: '#/components/schemas/Mensagem'
 components:
   schemas:
+<<<<<<< HEAD
+    ArrayOfHistorico:
+      type: array
+      items:
+        $ref: '#/components/schemas/Historico'
+    Historico:
+=======
     ArrayOfCalculos:
       type: array
       items:
         $ref: '#/components/schemas/Calculo'
     Calculo:
+>>>>>>> 466a0fa0a3b5f8a283de27dc418fbf6641ec8384
       type: object
       properties:
         nome:
           type: string
+<<<<<<< HEAD
+        calculo:
+=======
         preco:
+>>>>>>> 466a0fa0a3b5f8a283de27dc418fbf6641ec8384
           type: number
     Mensagem:
       type: object
       properties:
         msg:
           type: string
+<<<<<<< HEAD
+ securitySchemes: 
+=======
     Farm:
       type: object
       required:
@@ -211,9 +283,14 @@ components:
         size:
           type: number
   securitySchemes: 
+>>>>>>> 466a0fa0a3b5f8a283de27dc418fbf6641ec8384
     JWTAuth:
       type: apiKey
       in: header
       name: Authorization   
+<<<<<<< HEAD
+      description: Token JWT necessário para autenticação.
+=======
       description: Token JWT necessário para autenticação.
     
+>>>>>>> 466a0fa0a3b5f8a283de27dc418fbf6641ec8384
