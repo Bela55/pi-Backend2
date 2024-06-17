@@ -1,9 +1,102 @@
-#estrutura minima 
-
 openapi: 3.0.0
-info: 
-  title: API Loja Virtual
-  version: 0.0.1
-tags: 
+info:
+  title: API FARM
+  description: API para gerenciar fazendas
+  version: 1.0.0
+servers:
+  - url: http://localhost:5000
 paths:
+  /api/farms:
+    post:
+      summary: Criar uma nova fazenda
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Farm'
+      responses:
+        '201':
+          description: Fazenda criada com sucesso
+        '500':
+          description: Erro ao criar a fazenda
+    get:
+      summary: Listar todas as fazendas
+      responses:
+        '200':
+          description: Lista de fazendas
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Farm'
+        '500':
+          description: Erro ao listar fazendas
+  /api/farms/{id}:
+    get:
+      summary: Obter uma fazenda pelo ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Fazenda encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Farm'
+        '404':
+          description: Fazenda não encontrada
+        '400':
+          description: ID inválido
+    put:
+      summary: Atualizar uma fazenda pelo ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Fazendas'
+      responses:
+        '200':
+          description: Fazenda atualizada com sucesso
+        '500':
+          description: Erro ao atualizar a fazenda
+    delete:
+      summary: Remover uma fazenda pelo ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Fazenda removida com sucesso
+        '500':
+          description: Erro ao remover a fazenda
 components:
+  schemas:
+    Farm:
+      type: object
+      required:
+        - name
+        - location
+        - size
+      properties:
+        name:
+          type: string
+        location:
+          type: string
+        size:
+          type: number
