@@ -1,26 +1,22 @@
 openapi: 3.0.0
 info:
   title: API Biodigestor
-  version: 0.1
-  servers:
-    - url: http://localhost:3000/api/v1
-      description: Servidor de Desenvolvimento
+  version: "0.1"
+tags:
+  - users
 paths:
   /users:
     get:
       summary: Lista todos os usuários
+      tags:
+        - users
       responses:
-        "200":
+        200:
           description: Uma lista de usuários
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Users"
-
-      security:
-        - JWTAuth: []
+                $ref: "#/components/schemas/ArrayOfUsers"
     post:
       tags:
         - users
@@ -28,13 +24,18 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/Users"
+              $ref: "#/components/schemas/Usuario"
       responses:
-        200:
+        201:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Users"
+                $ref: "#/components/schemas/Usuario"
+        409:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Mensagem"
         500:
           content:
             application/json:
@@ -53,7 +54,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Users"
+                $ref: "#/components/schemas/Usuario"
         404:
           content:
             application/json:
@@ -75,39 +76,40 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/Users"
+              $ref: "#/components/schemas/Usuario"
       responses:
         200:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Users"
-        500:
+                $ref: "#/components/schemas/Usuario"
+        404:
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Mensagem"
-      delete:
-        tags:
-          - users
-        parameters:
-          - in: path
-            type: string
-            name: id
-        responses:
-          204:
-            content:
-          500:
-            content:
-              application/json:
-                schema:
-                  $ref: "#/components/schemas/Mensagem"
+    delete:
+      tags:
+        - users
+      parameters:
+        - in: path
+          type: string
+          name: id
+      responses:
+        204:
+          content:
+        404:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Mensagem"
+
 components:
   schemas:
-    ArrayOfusuario:
+    ArrayOfUsers:
       type: array
       items:
-        $ref: "#/components/schemas/Users"
+        $ref: "#/components/schemas/Usuario"
     Usuario:
       type: object
       properties:
@@ -120,8 +122,12 @@ components:
     Mensagem:
       type: object
       properties:
-        msg:
+        status:
+          type: number
+        message:
           type: string
+        data:
+          type: object
   securitySchemes:
     JWTAuth:
       type: apiKey
