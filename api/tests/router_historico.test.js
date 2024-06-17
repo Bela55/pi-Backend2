@@ -4,6 +4,8 @@ const app = require("../app");
 
 const request = supertest(app);
 
+let id = null;
+
 describe("API Historico de Fazendas", function () {
    test("Deve retornar 201 e um JSON para POST /historico", async () => {
      const result = await request 

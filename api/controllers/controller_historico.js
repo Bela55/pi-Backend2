@@ -30,6 +30,12 @@ async function buscarPeloId(req, res, next){
     }
 }
 
+async function obter(req, res) {
+  const id = new mongoose.Types.ObjectId(req.params.id);
+  const historico = await Historico.findOne({ _id: id });
+  res.json(historico);
+}
+
 async function atualizar(req, res) {
   const id = new mongoose.Types.ObjectId(req.params.id);
   const historico = await Historico.findOneAndUpdate({ _id: id }, req.body);
@@ -42,4 +48,4 @@ async function remover(req,res){
     res.status(204).end();
 }
 
-module.exports = { validarDados, listarTodos, buscarPeloId, atualizar, remover };
+module.exports = { validarDados, listarTodos, buscarPeloId, obter, atualizar, remover };
