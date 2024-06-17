@@ -10,4 +10,4 @@ const router = express.Router();
 router.use("/", swaggerUI.serve);
 router.get("/", swaggerUI.setup(swaggerDoc));
 
-module.exports = { router };
+module.exports = router;

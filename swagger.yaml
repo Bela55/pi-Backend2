@@ -1,0 +1,129 @@
+openapi: 3.0.0
+info:
+  title: API Biodigestor
+  version: 0.1
+  servers:
+    - url: http://localhost:3000/api/v1
+      description: Servidor de Desenvolvimento
+paths:
+  /users:
+    get:
+      summary: Lista todos os usuários
+      responses:
+        "200":
+          description: Uma lista de usuários
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Users"
+
+      security:
+        - JWTAuth: []
+    post:
+      tags:
+        - users
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Users"
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Users"
+        500:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Mensagem"
+  /users/{id}:
+    get:
+      tags:
+        - users
+      parameters:
+        - in: path
+          type: string
+          name: id
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Users"
+        404:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Mensagem"
+        500:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Mensagem"
+    put:
+      tags:
+        - users
+      parameters:
+        - in: path
+          type: string
+          name: id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Users"
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Users"
+        500:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Mensagem"
+      delete:
+        tags:
+          - users
+        parameters:
+          - in: path
+            type: string
+            name: id
+        responses:
+          204:
+            content:
+          500:
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Mensagem"
+components:
+  schemas:
+    ArrayOfusuario:
+      type: array
+      items:
+        $ref: "#/components/schemas/Users"
+    Usuario:
+      type: object
+      properties:
+        nome:
+          type: string
+        email:
+          type: string
+        senha:
+          type: string
+    Mensagem:
+      type: object
+      properties:
+        msg:
+          type: string
+  securitySchemes:
+    JWTAuth:
+      type: apiKey
+      in: header
+      name: Authorization
