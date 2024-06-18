@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const Fazendas = require("../models/model_fazendas");
+const Fazenda = require("../models/model_fazendas");
 
 async function validarDados(req, res, next) {
   const fazenda = new Fazenda(req.body);
@@ -50,7 +50,9 @@ async function obter(req, res) {
 
 async function atualizar(req, res) {
   try {
-    const fazenda = await Fazenda.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    const fazenda = await Fazenda.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
     res.json(fazenda);
   } catch (err) {
     res.status(500).json({ msg: "Erro ao atualizar a fazenda" });
@@ -73,5 +75,5 @@ module.exports = {
   buscarPeloId,
   obter,
   atualizar,
-  remover
+  remover,
 };

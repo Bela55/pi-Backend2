@@ -3,7 +3,6 @@ const express = require("express");
 const mongoose = require("mongoose");
 const logger = require("morgan");
 const cookieParser = require("cookie-parser");
-const swaggerUI = require("swagger-ui-espress");
 const fazendaRoutes = require("./routes/router_fazendas");
 const routerHistorico = require("./routes/router_historico");
 const routerCalculo = require("./routes/router_Calculo");
