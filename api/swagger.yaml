@@ -1,26 +1,13 @@
 openapi: 3.0.0
 info:
-<<<<<<< HEAD
-  title: API Hitorico de Fazendas
-  version: 0.1
-host: localhost:3000
-basePath:'/api'
-tags:
-  - historico
-paths:
-  /historicos:
-    get:
-      tags:
-        - historico
-=======
   title: Calculo do BioDigestor
   version: 0.0.2
 host: localhost:3000
-basePath: '/'
+basePath: "/"
 tags:
   - Calculos
 paths:
-  /api/farms:
+  /fazenda:
     post:
       summary: Criar uma nova fazenda
       requestBody:
@@ -28,26 +15,26 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Farm'
+              $ref: "#/components/schemas/Farm"
       responses:
-        '201':
+        "201":
           description: Fazenda criada com sucesso
-        '500':
+        "500":
           description: Erro ao criar a fazenda
     get:
       summary: Listar todas as fazendas
       responses:
-        '200':
+        "200":
           description: Lista de fazendas
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Farm'
-        '500':
+                  $ref: "#/components/schemas/Farm"
+        "500":
           description: Erro ao listar fazendas
-  /api/farms/{id}:
+  /fazenda/{id}:
     get:
       summary: Obter uma fazenda pelo ID
       parameters:
@@ -57,15 +44,15 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: Fazenda encontrada
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Farm'
-        '404':
+                $ref: "#/components/schemas/Farm"
+        "404":
           description: Fazenda não encontrada
-        '400':
+        "400":
           description: ID inválido
     put:
       summary: Atualizar uma fazenda pelo ID
@@ -80,11 +67,11 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Fazendas'
+              $ref: "#/components/schemas/Fazendas"
       responses:
-        '200':
+        "200":
           description: Fazenda atualizada com sucesso
-        '500':
+        "500":
           description: Erro ao atualizar a fazenda
     delete:
       summary: Remover uma fazenda pelo ID
@@ -95,69 +82,45 @@ paths:
           schema:
             type: string
       responses:
-        '204':
+        "204":
           description: Fazenda removida com sucesso
-        '500':
+        "500":
           description: Erro ao remover a fazenda
-  /Calculos:
+  /calculo:
     get:
       tags:
         - Calculos
->>>>>>> 466a0fa0a3b5f8a283de27dc418fbf6641ec8384
       responses:
         200:
           content:
             application/json:
               schema:
-<<<<<<< HEAD
-                $ref: '#/components/schemas/ArrayOfHistorico'
-=======
-                $ref: '#/components/schemas/ArrayOfCalculos'
->>>>>>> 466a0fa0a3b5f8a283de27dc418fbf6641ec8384
+                $ref: "#/components/schemas/ArrayOfCalculos"
       security:
         - JWTAuth: []
     post:
       tags:
-<<<<<<< HEAD
-        - historico
-=======
         - Calculos
->>>>>>> 466a0fa0a3b5f8a283de27dc418fbf6641ec8384
       requestBody:
         content:
           application/json:
             schema:
-<<<<<<< HEAD
-              $ref: '#/components/schemas/Historico'
-=======
-              $ref: '#/components/schemas/Calculo'
->>>>>>> 466a0fa0a3b5f8a283de27dc418fbf6641ec8384
+              $ref: "#/components/schemas/Calculo"
       responses:
         201:
           content:
             application/json:
               schema:
-<<<<<<< HEAD
-                $ref: '#/components/schemas/Historico'
-=======
-                $ref: '#/components/schemas/Calculo'
->>>>>>> 466a0fa0a3b5f8a283de27dc418fbf6641ec8384
+                $ref: "#/components/schemas/Calculo"
         422:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Mensagem'
-<<<<<<< HEAD
+                $ref: "#/components/schemas/Mensagem"
   /historico/{id}:
     get:
       tags:
         - historico
-=======
-  /Calculos/{id}:
-    get:
-      tags:
-        - Calculos
->>>>>>> 466a0fa0a3b5f8a283de27dc418fbf6641ec8384
       parameters:
         - in: path
           type: string
@@ -167,28 +130,20 @@ paths:
           content:
             application/json:
               schema:
-<<<<<<< HEAD
-                $ref: '#/components/schemas/Historico'
-=======
-                $ref: '#/components/schemas/Calculo'
->>>>>>> 466a0fa0a3b5f8a283de27dc418fbf6641ec8384
+                $ref: "#/components/schemas/Historico"
         404:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Mensagem'
+                $ref: "#/components/schemas/Mensagem"
         422:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Mensagem'
+                $ref: "#/components/schemas/Mensagem"
     put:
       tags:
-<<<<<<< HEAD
         - historico
-=======
-        - Calculos
->>>>>>> 466a0fa0a3b5f8a283de27dc418fbf6641ec8384
       parameters:
         - in: path
           type: string
@@ -197,33 +152,21 @@ paths:
         content:
           application/json:
             schema:
-<<<<<<< HEAD
-              $ref: '#/components/schemas/Historico'
-=======
-              $ref: '#/components/schemas/Calculo'
->>>>>>> 466a0fa0a3b5f8a283de27dc418fbf6641ec8384
+              $ref: "#/components/schemas/Historico"
       responses:
         200:
           content:
             application/json:
               schema:
-<<<<<<< HEAD
-                $ref: '#/components/schemas/Historico'
-=======
-                $ref: '#/components/schemas/Calculo'
->>>>>>> 466a0fa0a3b5f8a283de27dc418fbf6641ec8384
+                $ref: "#/components/schemas/Historico"
         404:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Mensagem'
+                $ref: "#/components/schemas/Mensagem"
     delete:
       tags:
-<<<<<<< HEAD
         - historico
-=======
-        - Calculos
->>>>>>> 466a0fa0a3b5f8a283de27dc418fbf6641ec8384
       parameters:
         - in: path
           type: string
@@ -235,40 +178,47 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Mensagem'
+                $ref: "#/components/schemas/Mensagem"
 components:
   schemas:
-<<<<<<< HEAD
     ArrayOfHistorico:
       type: array
       items:
-        $ref: '#/components/schemas/Historico'
+        $ref: "#/components/schemas/Historico"
     Historico:
-=======
-    ArrayOfCalculos:
-      type: array
-      items:
-        $ref: '#/components/schemas/Calculo'
-    Calculo:
->>>>>>> 466a0fa0a3b5f8a283de27dc418fbf6641ec8384
       type: object
       properties:
         nome:
           type: string
-<<<<<<< HEAD
-        calculo:
-=======
+    ArrayOfUsers:
+      type: array
+      items:
+        $ref: "#/components/schemas/Usuario"
+    Usuario:
+      type: object
+      properties:
+        nome:
+          type: string
+        email:
+          type: string
+        senha:
+          type: string
+    ArrayOfCalculos:
+      type: array
+      items:
+        $ref: "#/components/schemas/Calculo"
+    Calculo:
+      type: object
+      properties:
+        nome:
+          type: string
         preco:
->>>>>>> 466a0fa0a3b5f8a283de27dc418fbf6641ec8384
           type: number
     Mensagem:
       type: object
       properties:
         msg:
           type: string
-<<<<<<< HEAD
- securitySchemes: 
-=======
     Farm:
       type: object
       required:
@@ -282,15 +232,9 @@ components:
           type: string
         size:
           type: number
-  securitySchemes: 
->>>>>>> 466a0fa0a3b5f8a283de27dc418fbf6641ec8384
+  securitySchemes:
     JWTAuth:
       type: apiKey
       in: header
-      name: Authorization   
-<<<<<<< HEAD
+      name: Authorization
       description: Token JWT necessário para autenticação.
-=======
-      description: Token JWT necessário para autenticação.
-    
->>>>>>> 466a0fa0a3b5f8a283de27dc418fbf6641ec8384
