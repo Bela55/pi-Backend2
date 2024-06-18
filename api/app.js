@@ -8,6 +8,7 @@ const routerHistorico = require("./routes/router_historico");
 const routerCalculo = require("./routes/router_Calculo");
 const apidocsRoutes = require("./routes/router_apidocs");
 const userRouter = require("./routes/userRoutes");
+const authRouter = require("./routes/authRoutes");
 
 var app = express();
 app.use(logger("dev"));
@@ -25,6 +26,7 @@ mongoose
   });
 
 // Use as rotas
+app.use("/login", authRouter);
 app.use("/users", userRouter);
 app.use("/fazenda", fazendaRoutes);
 app.use("/historico", routerHistorico);
