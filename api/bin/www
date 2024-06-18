@@ -4,16 +4,27 @@
  * Module dependencies.
  */
 
+<<<<<<< HEAD:bin/www
 var app = require("../app");
 var debug = require("debug")("aula10:server");
 var http = require("http");
+=======
+var app = require('../app_Calculo');
+var debug = require('debug')('api:server');
+var http = require('http');
+>>>>>>> e8952caa824afcb174392070c8e6818d8e78f3f2:api/bin/www
 
 /**
  * Get port from environment and store in Express.
  */
 
+<<<<<<< HEAD:bin/www
 var port = normalizePort(process.env.PORT || "3000");
 app.set("port", port);
+=======
+var port = normalizePort(process.env.PORT || '5000');
+app.set('port', port);
+>>>>>>> e8952caa824afcb174392070c8e6818d8e78f3f2:api/bin/www
 
 /**
  * Create HTTP server.
